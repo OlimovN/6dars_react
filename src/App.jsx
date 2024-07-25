@@ -27,7 +27,7 @@ function App() {
     api("https://jsonplaceholder.typicode.com/photos")
       .then((data) => {
         setUser(data);
-        setFilteredUser(data); // Initialize filteredUser with all data
+        setFilteredUser(data);
       })
       .catch((error) => {
         console.log(error);
