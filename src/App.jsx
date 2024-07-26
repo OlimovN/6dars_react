@@ -171,6 +171,100 @@ import "./App.css";
 // 3 - fayl
 // __________________________________________________________________________
 
+function App() {
+  const nameRef = useRef("");
+  const emailRef = useRef("");
+  const lastNameRef = useRef("");
+  const companyRef = useRef("");
+  const addressRef = useRef("");
+  const yearRef = useRef("");
+  const monthRef = useRef("");
+  const dayRef = useRef("");
+
+  function handleSubmit() {
+    if (
+      !nameRef.current.value ||
+      !emailRef.current.value ||
+      !lastNameRef.current.value ||
+      !companyRef.current.value ||
+      !addressRef.current.value ||
+      !yearRef.current.value ||
+      !monthRef.current.value ||
+      !dayRef.current.value
+    ) {
+      alert("Please fill in all inputs");
+      return;
+    }
+    if (!emailRef.current.value.includes("@gmail.com")) {
+      alert("Please correct your email");
+      return;
+    }
+    if (addressRef.current.value.length < 5) {
+      alert("Address is too short");
+      return;
+    }
+    if (companyRef.current.value.length < 2) {
+      alert("Company name is too short");
+    }
+
+    const formData = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      lastName: lastNameRef.current.value,
+      company: companyRef.current.value,
+      address: addressRef.current.value,
+      birthday: {
+        year: yearRef.current.value,
+        month: monthRef.current.value,
+        day: dayRef.current.value,
+      },
+    };
+
+    console.log(formData);
+  }
+
+  return (
+    <div className="form-container">
+      <h1 className="form-heading">
+        <i className="fa-regular fa-star"></i> YourEvent
+      </h1>
+      <p className="form-subheading">Online Registration</p>
+      <div className="form-inputs">
+        <div className="form-group">
+          <div className="form-field">
+            <label className="form-label">First Name</label>
+            <input ref={nameRef} placeholder="First name" type="text" />
+          </div>
+          <div className="form-field">
+            <label className="form-label">Last Name</label>
+            <input ref={lastNameRef} type="text" placeholder="Last name" />
+          </div>
+        </div>
+        <div className="form-field">
+          <label className="form-label">Email Address</label>
+          <input ref={emailRef} type="text" placeholder="Email Address" />
+        </div>
+        <div className="form-field">
+          <label className="form-label">Company</label>
+          <input ref={companyRef} type="text" placeholder="Company" />
+        </div>
+        <div className="form-field">
+          <label className="form-label">Physical Address</label>
+          <input ref={addressRef} type="text" placeholder="Physical Address" />
+        </div>
+        <div className="form-date">
+          <label className="form-label">Date of Your Birthday</label>
+          <input ref={yearRef} placeholder="Year" type="number" />
+          <input ref={monthRef} placeholder="Month" type="number" />
+          <input ref={dayRef} placeholder="Day" type="number" />
+        </div>
+      </div>
+      <button className="submit-button" onClick={handleSubmit}>Continue</button>
+    </div>
+  );
+}
+
+
 
 
 export default App;
